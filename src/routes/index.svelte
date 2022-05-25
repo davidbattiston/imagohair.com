@@ -1,42 +1,44 @@
-<script context="module">
-	export async function load({ params, fetch, session, stuff }) {
-		const response = await fetch('/data/settings');
-		return {
-			status: response.status,
-			props: {
-				settings: response.ok && (await response.json())
-			}
-		};
-	}
-</script>
-
 <script>
-	import banner from '$lib/assets/giorgio-trovato-wSpkThmoZQc-unsplash.jpg';
-	export let settings;
+	import Banner from '$lib/components/banner.svelte';
+	import StylistGrid from '$lib/components/stylistGrid.svelte';
+	import imagoInterior from '$lib/assets/imago-salon-interior.jpg';
+	import imagoBuilding from '$lib/assets/imago-salon-building.jpg';
 </script>
 
 <svelte:head>
-	<title>{settings.meta_title}</title>
-	<meta name="description" content={settings.meta_description} />
-	<meta name="og:image" content={settings.og_image} />
-	<meta name="og:title" content={settings.og_title} />
-	<meta name="og:description" content={settings.description} />
-	<meta name="og:site_name" content={settings.title} />
+	<title>Imago Salon Studios in Richmond, VA - Chic salon and spa studios</title>
+	<meta
+		name="description"
+		content="Located in the heart of the Fan in
+	Richmond, Imago offers a local, cozy atmosphere. We provide studios for professional specializing in beauty and wellness."
+	/>
+	<meta
+		name="og:title"
+		content="Imago Salon Studios in Richmond, VA - Chic salon and spa studios"
+	/>
+	<meta
+		name="og:description"
+		content="Located in the heart of the Fan in
+	Richmond, Imago offers a local, cozy atmosphere. We provide studios for professional specializing in beauty and wellness."
+	/>
+	<meta
+		name="og:site_name"
+		content="Imago Salon Studios in Richmond, VA - Chic salon and spa studios"
+	/>
 	<meta name="og:url" content="https://imagohair.com" />
-
-	<meta name="twitter:image" content={settings.twitter_image} />
-	<meta name="twitter:title" content={settings.twitter_title} />
-	<meta name="twitter:description" content={settings.twitter_description} />
-	<meta name="twitter:site" content={settings.twitter} />
+	<meta
+		name="twitter:title"
+		content="Imago Salon Studios in Richmond, VA - Chic salon and spa studios"
+	/>
+	<meta
+		name="twitter:description"
+		content="Located in the heart of the Fan in
+	Richmond, Imago offers a local, cozy atmosphere. We provide studios for professional specializing in beauty and wellness."
+	/>
 </svelte:head>
+
 <div>
-	<div>
-		<div class="banner-wrapper">
-			<img alt="proof of concept" src={banner} />
-			<div class="gradient" />
-		</div>
-		<h1>Own your work</h1>
-	</div>
+	<Banner />
 	<div class="content-wrapper">
 		<h2>
 			Imago is a salon and spa studio provider specializing in beauty and wellness professionals.
@@ -46,32 +48,47 @@
 			haircuts and color as well as the highest quality products. Located in the heart of the Fan in
 			Richmond, our salon space offers a local, cozy atmosphere.
 		</p>
-		<h2>Who's here?</h2>
+		<p>
+			Imago salon studios are move in ready. There are different layouts and equipment for each type
+			of service you provide. We can accomodate you and you're unique needs.
+		</p>
+		<div class="aspect-ratio-container-interior">
+			<img alt="proof of concept" src={imagoInterior} />
+		</div>
+		<h3>Location and contact information</h3>
+		<div class="location-wrapper">
+			<div class="location-description">
+				<p>
+					Imago is located on Main Street in Richmond, Va. Our address is 2602 W Main St, Richmond
+					Va 23220. There is parking available in the alley directly behind our building and on a
+					cement paved lot, in the alley across Robinson.
+				</p>
+				<p>If you'd like to rent a studio at Imago you can reach us at (804) 355-1040</p>
+			</div>
+		</div>
+		<h3>Our Stylists</h3>
+		<StylistGrid />
 	</div>
 </div>
 
 <style lang="scss">
 	@use '../node_modules/rfs/scss.scss' as rfs;
-	div.wrapper {
-		padding: 10px;
-		max-width: 1200px;
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-		@media only screen and (min-width: 1200px) {
-			padding: 20px;
+
+	div.content-wrapper {
+		@include rfs.margin-top(40px);
+		@include rfs.margin-bottom(40px);
+		p {
+			max-width: 900px;
 		}
+		padding: 0px 8px;
 	}
-	div.banner-wrapper {
+
+	div.aspect-ratio-container-interior {
+		@include rfs.margin-top(40px);
+		height: 0;
+		overflow: hidden;
 		position: relative;
-		width: 100%;
-		padding-top: 150%; /* 4:3 Aspect Ratio */
-		@media only screen and (min-width: 400px) {
-			padding-top: 120%; /* 3:2 Aspect Ratio */
-		}
-		@media only screen and (min-width: 500px) {
-			padding-top: 100%; /* 3:2 Aspect Ratio */
-		}
+		padding-top: 100%;
 		@media only screen and (min-width: 600px) {
 			padding-top: 80%; /* 3:2 Aspect Ratio */
 		}
@@ -81,49 +98,11 @@
 		@media only screen and (min-width: 1200px) {
 			padding-top: 44%; /* 16:9 Aspect Ratio */
 		}
+		box-shadow: 0.5px 0.6px 2.2px rgba(0, 0, 0, 0.017), 1.2px 1.3px 5.3px rgba(0, 0, 0, 0.024),
+			2.3px 2.5px 10px rgba(0, 0, 0, 0.03), 4px 4.5px 17.9px rgba(0, 0, 0, 0.036),
+			7.5px 8.4px 33.4px rgba(0, 0, 0, 0.043), 18px 20px 80px rgba(0, 0, 0, 0.06);
 
-		div.gradient {
-			background-image: linear-gradient(
-				146deg,
-				hsla(40.21, 83.93%, 43.92%, 0.66) 0%,
-				hsla(39.16, 78.97%, 45.21%, 0.658) 8.1%,
-				hsla(36.54, 70.07%, 47.78%, 0.654) 15.5%,
-				hsla(32.69, 63.14%, 50.67%, 0.646) 22.5%,
-				hsla(27.61, 62.32%, 53.59%, 0.637) 29%,
-				hsla(21.23, 61.71%, 56.46%, 0.626) 35.3%,
-				hsla(13.49, 61.3%, 59.21%, 0.614) 41.2%,
-				hsla(4.34, 61.1%, 61.83%, 0.601) 47.1%,
-				hsla(354.34, 63.4%, 61.99%, 0.589) 52.9%,
-				hsla(346.02, 67.29%, 60.25%, 0.576) 58.8%,
-				hsla(339.37, 70.87%, 58.3%, 0.564) 64.7%,
-				hsla(334.08, 74.05%, 56.13%, 0.553) 71%,
-				hsla(329.89, 76.79%, 53.74%, 0.544) 77.5%,
-				hsla(326.6, 79.06%, 51.1%, 0.536) 84.5%,
-				hsla(324.07, 86.78%, 48.23%, 0.532) 91.9%,
-				hsla(322.17, 100%, 45.1%, 0.53) 100%
-			);
-			width: 100%;
-			padding-top: 150%; /* 4:3 Aspect Ratio */
-			@media only screen and (min-width: 400px) {
-				padding-top: 120%; /* 16:9 Aspect Ratio */
-			}
-			@media only screen and (min-width: 500px) {
-				padding-top: 100%; /* 3:2 Aspect Ratio */
-			}
-			@media only screen and (min-width: 600px) {
-				padding-top: 80%; /* 3:2 Aspect Ratio */
-			}
-			@media only screen and (min-width: 800px) {
-				padding-top: 60%; /* 3:2 Aspect Ratio */
-			}
-			@media only screen and (min-width: 1200px) {
-				padding-top: 44%; /* 16:9 Aspect Ratio */
-			}
-			position: absolute;
-			top: 0;
-			left: 0;
-		}
-
+		border-radius: 16px;
 		img {
 			position: absolute;
 			top: 0;
@@ -131,43 +110,7 @@
 			width: 100%;
 			height: 100%;
 			object-fit: cover;
-		}
-	}
-
-	// h1 {
-	// 	position: absolute;
-	// 	top: 0;
-	// 	left: 30px;
-	// 	color: white;
-	// 	padding-top: 60%; /* 4:3 Aspect Ratio */
-	// 	@media only screen and (min-width: 400px) {
-	// 		padding-top: 40%; /* 16:9 Aspect Ratio */
-	// 	}
-	// 	@media only screen and (min-width: 800px) {
-	// 		padding-top: 30%; /* 3:2 Aspect Ratio */
-	// 	}
-	// 	@media only screen and (min-width: 1200px) {
-	// 		padding-top: 20%; /* 16:9 Aspect Ratio */
-	// 	}
-	// }
-
-	h1 {
-		margin-top: -140px;
-		margin-bottom: 140px;
-		padding-left: 40px;
-		z-index: 1;
-		position: relative;
-		color: white;
-	}
-
-	div.content-wrapper {
-		@include rfs.margin-top(40px);
-		@include rfs.margin-bottom(40px);
-		max-width: 900px;
-
-		h2 {
-			@include rfs.font-size(30px);
-			@include rfs.font-size(30px);
+			border-radius: 16px;
 		}
 	}
 </style>

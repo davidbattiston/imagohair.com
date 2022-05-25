@@ -61,6 +61,7 @@
 
 	ul {
 		display: flex;
+		display: none;
 		flex-direction: row;
 		padding: 0;
 		gap: 24px;

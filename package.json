@@ -23,8 +23,11 @@
   },
   "type": "module",
   "dependencies": {
-    "@tryghost/content-api": "^1.9.6",
     "rfs": "^9.0.6",
     "sass": "^1.51.0"
+  },
+  "engines" : { 
+    "npm" : ">=7.0.0",
+    "node" : ">=16.0.0"
   }
 }
